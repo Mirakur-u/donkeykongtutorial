@@ -27,6 +27,9 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		(body as Player).start_climbing(position.x)
+	
+	if body is Barrel && can_barrel_go_down && randf() < barrel_goes_down_chance:
+		(body as Barrel).fall_down_the_ladder()
 
 
 func _on_body_exited(body: Node2D) -> void:

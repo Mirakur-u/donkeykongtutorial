@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://4ds14fefnlww"]
+
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_0lj2a"]
+[ext_resource type="FontFile" uid="uid://bjpc1765qtr76" path="res://Assets/Retro Gaming.ttf" id="2_v7gi0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gq7ao"]
+bg_color = Color(0.767391, 0.325042, 0.365333, 1)
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_0lj2a")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("2_v7gi0")
+text = "Points: 0
+"
+
+[node name="WinLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("2_v7gi0")
+text = "You have won!!!"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gq7ao")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -16.5
+offset_right = 48.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_v7gi0")
+text = "YOU LOST!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="MarginContainer/CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v7gi0")
+text = "RESTART"
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/Panel/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
